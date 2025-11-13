@@ -1,0 +1,17 @@
+🔧 Backend : Node.js + TypeScript (avec structure MVC)
+    Langage : TypeScript
+
+    Framework : Express.js ou Fastify (MVC custom ou modulaire)
+
+    ORM : TypeORM ou Prisma (connecté à ta base MySQL)
+
+    Architecture : MVC orienté objet
+
+    🎨 Frontend : Vue.js 3 (composition API ou options API)
+    Langage : JavaScript ou TypeScript (optionnel ici)
+
+    UI framework : TailwindCSS ou Vuetify
+
+    Déploiement : Vercel (très facile pour Vue.js)
+
+

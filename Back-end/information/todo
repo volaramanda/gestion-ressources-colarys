@@ -1,0 +1,59 @@
+# Gestion des Ressources et Production de Colarys Concept
+
+## Apprentissage des nouvelles technologies
+- Langage **TypeScript** (front et back-end)
+- Utilisation d’**ORM** (TypeORM, Prisma) pour la gestion de la base de données
+- Mise en place de l’**authentification avec tokens JWT**
+- Développement avec **Vue.js** pour une interface utilisateur moderne et réactive
+
+## Installation des environnements
+- Mise en place des environnements **front-end** (Vue + Vite) et **back-end** (Node.js + Express)
+- Configuration des bases de données (PostgreSQL)
+- Intégration des fonctionnalités techniques :
+  - ORM
+  - Authentification (Login, rôles)
+  - API REST sécurisées
+
+ Presence (Badgeuse virtuelle)
+- Interface de pointage : arrivéer,sortir(Formulaire :matricul,prenom,compagne(role), shift/marquage,heur d'entre, signature,et heur de sortir et signature)
+- Calcul des heures travaillées
+- Visualisation de l'historique
+
+
+
+## Analyse des besoins
+- **Gestion des utilisateurs** :
+  - Rôles : Administrateur, Superviseur, Agent
+  - Création et gestion des comptes
+- **Gestion des agents** :
+  - Emploi du temps, historique de connexion (Pointage)
+  - Attribution de campagnes
+
+## Planification des fonctionnalités du module
+
+### 🔹 Gestion des Agents
+- Création, modification et suppression des comptes agents
+- Gestion des rôles et permissions
+- Attribution à des campagnes spécifiques
+
+### 🔹 Planning et Horaires
+- Création et affichage des plannings hebdomadaires
+- Suivi des horaires, pauses, absences
+- Génération de rapports de présence
+
+### 🔹 Gestion des Primes
+- Définition de types de primes : performance, assiduité, objectifs
+- Attribution automatique ou manuelle
+- Historique des primes par agent
+
+### 🔹 Presence (Badgeuse virtuelle)
+- Interface de pointage : arrivéer,sortir(Formulaire :matricul,prenom,compagne(role), shift/marquage,heur d'entre, signature,et heur de sortir et signature)
+- Calcul des heures travaillées
+- Visualisation de l'historique
+
+### 🔹 Statistiques & Reporting
+- Tableau de bord pour superviseurs/admins
+- Graphiques de performance (agents, heures)
+- Export des données (PDF, CSV)
+
+### Autre

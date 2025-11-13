@@ -1,0 +1,29 @@
+# Premier lacement du projet
+npm init -y
+npm install express dotenv
+npx tsc --init
+npm install express typeorm mysql2 reflect-metadata dotenv
+npm install -D typescript ts-node-dev @types/node @types/express
+npm install @vercel/node
+npm install pg --save
+
+# Apina token @ny resaka securiter ana route le AUTH io
+npm install jsonwebtoken bcryptjs
+npm install --save-dev @types/jsonwebtoken @types/bcryptjs
+
+
+# Apina cors afahana milimiter ny url accepten'ilay back-End pour la sécurite
+npm install cors
+npm run dev
+
+# import fichier
+
+npm install express multer
+npm install --save-dev @types/multer
+
+npm install cloudinary multer multer-storage-cloudinary
+
+
+cd backend
+npm install @nestjs/typeorm typeorm pg
+npm install @supabase/supabase-js

@@ -1,0 +1,4 @@
+Raha anao acces via ssh enw dia ito ny acces
+
+mysql -h cmj-association.com -u cmjassoc_dbuser -p
+,zRH0?VryaOB
