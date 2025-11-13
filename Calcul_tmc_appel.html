@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gestionnaire Excel Avancé</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <style>
+/* ────────────────────────
+   Base : variables design
+──────────────────────── */
+:root {
+  /* Couleurs */
+  --color-bg-light: #ffffff;
+  --color-bg-muted: #f9f9f9;
+  --color-primary: #007bff;
+  --color-primary-hover: #0056b3;
+  --color-text: #333333;
+  --color-border: #e0e0e0;
+
+  /* Typographie */
+  --font-base: 16px;
+  --font-scale: 1.125; /* ratio pour h2, h3… */
+  --fw-normal: 400;
+  --fw-bold: 600;
+
+  /* Espacements */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+
+  /* Rayons & ombres */
+  --radius: 6px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* ────────────────────────
+   Global Reset & Base
+──────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: var(--font-base);
+  color: var(--color-text);
+  background-color: var(--color-bg-muted);
+  line-height: 1.5;
+  padding: var(--space-md);
+}
+
+/* Headings scaled */
+h2 { font-size: calc(var(--font-base) * var(--font-scale) * var(--font-scale)); margin-bottom: var(--space-md); }
+h3 { font-size: calc(var(--font-base) * var(--font-scale)); margin-bottom: var(--space-sm); }
+h4 { font-size: var(--font-base); font-weight: var(--fw-bold); margin-bottom: var(--space-sm); }
+
+/* ────────────────────────
+   Form Controls
+──────────────────────── */
+input[type="month"],
+input[type="file"],
+input[type="number"],
+button {
+  font-size: var(--font-base);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-sm) var(--space-md);
+  margin-bottom: var(--space-sm);
+  width: 100%;
+  max-width: 320px;
+  background: var(--color-bg-light);
+  color: var(--color-text);
+}
+
+button {
+  background: var(--color-primary);
+  color: #fff;
+  cursor: pointer;
+  font-weight: var(--fw-bold);
+  transition: background 0.2s ease;
+}
+
+button:hover {
+  background: var(--color-primary-hover);
+}
+
+/* ────────────────────────
+   Layout Containers
+──────────────────────── */
+.section {
+  margin-top: var(--space-lg);
+}
+
+/* On desktop, limiter la largeur et centrer */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+/* ────────────────────────
+   Tables
+──────────────────────── */
+.table-wrapper {
+  overflow-x: auto;
+  margin-top: var(--space-md);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-bg-light);
+  box-shadow: var(--shadow-sm);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+th, td {
+  padding: var(--space-sm) var(--space-md);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--font-base);
+}
+
+thead th {
+  background: var(--color-bg-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-weight: var(--fw-bold);
+}
+
+tbody tr:hover {
+  background: var(--color-bg-muted);
+  cursor: pointer;
+}
+
+/* ────────────────────────
+   Responsive Grid for Desktop
+──────────────────────── */
+@media (min-width: 768px) {
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    align-items: flex-end;
+  }
+  .form-row > * {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .actions {
+    display: flex;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+  }
+
+  /* Summary and details side-by-side */
+  .result {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+  }
+}
+
+/* ────────────────────────
+   Mobile tweaks
+──────────────────────── */
+@media (max-width: 767px) {
+  h2 { font-size: calc(var(--font-base) * var(--font-scale)); }
+  table, th, td { font-size: 14px; }
+}
+
+  </style>
+</head>
+<body>
+
+  <h2>Gestionnaire Excel Avancé</h2>
+
+  <!-- Paramètres -->
+  <div class="section">
+    <label for="appPrix">💰 Prix par appel (Ar) :</label>
+    <input type="number" id="appPrix" value="15" min="0"><br>
+    <label for="tmcPrix">💰 Prix par TMC (Ar) :</label>
+    <input type="number" id="tmcPrix" value="50" min="0"><br>
+  </div>
+
+  <!-- Upload -->
+  <div class="section">
+    <label for="month">📅 Mois / Année :</label>
+    <input type="month" id="month"><br>
+    <input type="file" id="file" accept=".xlsx, .xls"><br>
+    <button onclick="handleUpload()">📤 Analyser & Stocker</button>
+  </div>
+  
+  <hr>
+
+  <!-- Visualisation & Export -->
+  <div class="section">
+    <h3>📋 Visualisation des données</h3>
+    <button onclick="loadAndRender()">🔍 Lister & Synthèse</button>
+    <button onclick="exportExcel()" style="margin-left:10px;">📥 Exporter en Excel</button>
+
+    <!-- Synthèse -->
+    <div id="summary" class="section"></div>
+    <!-- Détails -->
+    <div id="details" class="section"></div>
+  </div>
+
+  <script>
+    let currentData = {};
+
+    // Formate un montant en Ariary : 1234567 → "1 234 567 Ar"
+    function formatAr(amount) {
+      return amount.toLocaleString('fr-FR').replace(/,/g, ' ') + ' Ar';
+    }
+
+    function normalizeName(raw) {
+      if (raw === null || raw === undefined) return '';
+      let s = String(raw).toUpperCase().trim()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')  // enlever accents
+        .replace(/\s+/g, '');                              // enlever espaces
+      if (/^[0-9]/.test(s) || s === 'TOTAL') return '';    // ignorer chiffres & TOTAL
+      if (s.startsWith('MAT')) return 'MAT';
+      return s;
+    }
+
+    function handleUpload() {
+      const month = document.getElementById('month').value;
+      if (!month) { alert("⚠️ Sélectionnez un Mois/Année."); return; }
+      const fileEl = document.getElementById('file');
+      if (!fileEl.files.length) { alert("⚠️ Choisissez un fichier Excel."); return; }
+
+      // On lit et stocke les données
+      const reader = new FileReader();
+      reader.onload = e => {
+        const wb = XLSX.read(new Uint8Array(e.target.result), { type: 'array' });
+        const rows = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]], { header: 1 });
+        const structured = {};
+
+        for (let i = 1; i < rows.length; i++) {
+          const [rawNom, nbAppel, log, tmc, shift, remarque] = rows[i];
+          const key = normalizeName(rawNom);
+          if (!key) continue;
+          if (!structured[key]) structured[key] = [];
+          structured[key].push({
+            nom: normalizeName(rawNom),
+            nombreAppel: Number(nbAppel) || 0,
+            log: log || '',
+            tmc: Number(tmc) || 0,
+            shift: shift || '',
+            remarque: remarque || ''
+          });
+        }
+
+        localStorage.setItem(`data_${month}`, JSON.stringify(structured));
+        alert(`✅ Données stockées pour ${month}`);
+      };
+      reader.readAsArrayBuffer(fileEl.files[0]);
+    }
+
+    function loadAndRender() {
+      const month = document.getElementById('month').value;
+      const raw = localStorage.getItem(`data_${month}`);
+      if (!raw) { alert(`❌ Aucune donnée pour ${month}`); return; }
+      currentData = JSON.parse(raw);
+      renderSummary();
+      document.getElementById('details').innerHTML = '';
+    }
+
+    function renderSummary() {
+      // Récupère les prix depuis le formulaire
+      const appPrix = Number(document.getElementById('appPrix').value) || 0;
+      const tmcPrix = Number(document.getElementById('tmcPrix').value) || 0;
+
+      // Calcule la synthèse
+      const summaryArray = [];
+      for (const ag in currentData) {
+        const entries = currentData[ag];
+        const totAppels = entries.reduce((s,e) => s + e.nombreAppel, 0);
+        const totTMC    = entries.reduce((s,e) => s + e.tmc, 0);
+        const montantAppels = totAppels * appPrix;
+        const montantTMC    = totTMC * tmcPrix;
+        summaryArray.push({
+          agent: ag,
+          totAppels,
+          totTMC,
+          montantAppels,
+          montantTMC,
+          montantTotal: montantAppels + montantTMC
+        });
+      }
+
+      // Tri par montant total décroissant
+      summaryArray.sort((a,b) => b.montantTotal - a.montantTotal);
+
+      // Génère le HTML
+      let html = `<h4>🔎 Synthèse par agent (triée par montant total)</h4>
+        <table>
+          <thead>
+            <tr>
+              <th>Agent</th><th>Total Appels</th><th>Total TMC</th>
+              <th>Montant Appels</th><th>Montant TMC</th><th>Montant Total</th>
+            </tr>
+          </thead><tbody>`;
+
+      summaryArray.forEach(s => {
+        html += `<tr onclick="showDetails('${s.agent}')">
+                   <td>${s.agent}</td>
+                   <td>${s.totAppels}</td>
+                   <td>${s.totTMC}</td>
+                   <td>${formatAr(s.montantAppels)}</td>
+                   <td>${formatAr(s.montantTMC)}</td>
+                   <td>${formatAr(s.montantTotal)}</td>
+                 </tr>`;
+      });
+
+      html += `</tbody></table>`;
+      document.getElementById('summary').innerHTML = html;
+    }
+
+    function showDetails(agent) {
+      const appPrix = Number(document.getElementById('appPrix').value) || 0;
+      const tmcPrix = Number(document.getElementById('tmcPrix').value) || 0;
+      const rows = currentData[agent] || [];
+
+      let html = `<h4>📋 Détails pour ${agent}</h4>
+        <table>
+          <thead>
+            <tr>
+              <th>#</th><th>Nom</th><th>Appels</th><th>Montant Appels</th>
+              <th>Log</th><th>TMC</th><th>Montant TMC</th><th>Shift</th><th>Remarque</th>
+            </tr>
+          </thead><tbody>`;
+
+      rows.forEach((e, i) => {
+        const ma = e.nombreAppel * appPrix;
+        const mt = e.tmc * tmcPrix;
+        html += `<tr>
+                   <td>${i+1}</td>
+                   <td>${e.nom}</td>
+                   <td>${e.nombreAppel}</td>
+                   <td>${formatAr(ma)}</td>
+                   <td>${e.log}</td>
+                   <td>${e.tmc}</td>
+                   <td>${formatAr(mt)}</td>
+                   <td>${e.shift}</td>
+                   <td>${e.remarque}</td>
+                 </tr>`;
+      });
+
+      html += `</tbody></table>`;
+      document.getElementById('details').innerHTML = html;
+    }
+
+    function exportExcel() {
+      const month = document.getElementById('month').value;
+      if (!month || !Object.keys(currentData).length) {
+        alert("🔔 Chargez d'abord les données via « Lister & Synthèse ».");
+        return;
+      }
+      const appPrix = Number(document.getElementById('appPrix').value) || 0;
+      const tmcPrix = Number(document.getElementById('tmcPrix').value) || 0;
+
+      const wb = XLSX.utils.book_new();
+
+      // Feuille Résumé
+      const sumData = [["Agent","Total Appels","Total TMC","Montant Appels","Montant TMC","Montant Total"]];
+      for (const ag in currentData) {
+        const entries = currentData[ag];
+        const totAppels = entries.reduce((s,e) => s + e.nombreAppel, 0);
+        const totTMC    = entries.reduce((s,e) => s + e.tmc, 0);
+        const ma = totAppels * appPrix;
+        const mt = totTMC * tmcPrix;
+        sumData.push([ag, totAppels, totTMC, ma, mt, ma + mt]);
+      }
+      XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(sumData), "Résumé");
+
+      // Feuilles détaillées
+      for (const ag in currentData) {
+        const data = [["Nom","Appels","Montant Appels","Log","TMC","Montant TMC","Shift","Remarque"]];
+        currentData[ag].forEach(e => {
+          data.push([
+            e.nom,
+            e.nombreAppel,
+            e.nombreAppel * appPrix,
+            e.log,
+            e.tmc,
+            e.tmc * tmcPrix,
+            e.shift,
+            e.remarque
+          ]);
+        });
+        XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(data), ag);
+      }
+
+      XLSX.writeFile(wb, `Données_${month}.xlsx`);
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,1283 @@
+{
+	"info": {
+		"_postman_id": "917ea650-6f75-4b4d-be96-356bfdc6012b",
+		"name": "Theme Gestion des Resources et production de colarys concept",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "39988348"
+	},
+	"item": [
+		{
+			"name": "Utilisateur",
+			"item": [
+				{
+					"name": "Cree",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Anthony Herinantenaina\",\r\n  \"email\": \"rantonirinaanthony@gmail.com\",\r\n  \"password\": \"031013dter.\",\r\n  \"role\": \"ADMIN\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/utilisateur/create"
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"rantonirinaanthony@gmail.com\",\r\n  \"password\": \"031013dter.\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "login Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"rantonirinaanthony@gmail.com\",\r\n  \"password\": \"031013dter.\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://gestion-des-resources-et-production.vercel.app/api/auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "get all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25yaW5hYW50aG9ueUBnbWFpbC5jb20iLCJpYXQiOjE3NTIyMzYyNzksImV4cCI6MTc1MjMyMjY3OX0.PSYTNnczx3STqO4X1FPRKO9r0JZ8OrhGg8XkxzXZmFA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25pcmluYWFudGhvbnlAZ21haWwuY29tIiwiaWF0IjoxNzUyNjUxNDU4LCJleHAiOjE3NTI3Mzc4NTh9.yFxq4oLD9APYlXRmkn6xY0jk29mFhq-NE6eiGLrshqg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/utilisateur/getAll"
+					},
+					"response": []
+				},
+				{
+					"name": "get One",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25yaW5hYW50aG9ueUBnbWFpbC5jb20iLCJpYXQiOjE3NTIyMzYyNzksImV4cCI6MTc1MjMyMjY3OX0.PSYTNnczx3STqO4X1FPRKO9r0JZ8OrhGg8XkxzXZmFA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25pcmluYWFudGhvbnlAZ21haWwuY29tIiwiaWF0IjoxNzUyNjUxNDU4LCJleHAiOjE3NTI3Mzc4NTh9.yFxq4oLD9APYlXRmkn6xY0jk29mFhq-NE6eiGLrshqg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/utilisateur/getOne/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25pcmluYWFudGhvbnlAZ21haWwuY29tIiwiaWF0IjoxNzUyNjUxNDU4LCJleHAiOjE3NTI3Mzc4NTh9.yFxq4oLD9APYlXRmkn6xY0jk29mFhq-NE6eiGLrshqg\",\r\n    \"id\": 1,\r\n    \"name\": \"Anthony Herinantenaina\",\r\n    \"email\": \"rantonirinaanthony@gmail.com\",\r\n    \"password\": \"$2b$10$mJ16ypofswAWXwQiUzq3qOjrMXLZBHVsf3H04m.tei1/lLd54A6oe\",\r\n    \"role\": \"ADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/utilisateur/update/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{base_url}}/utilisateur/delete/7"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Agent",
+			"item": [
+				{
+					"name": "Cree Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Anthony Herinantenaina\",\r\n  \"email\": \"rantonirinaanthony@gmail.com\",\r\n  \"password\": \"031013dter.\",\r\n  \"role\": \"ADMIN\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/agent/create"
+					},
+					"response": []
+				},
+				{
+					"name": "Cree avec image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJyYW50b25pcmluYWFudGhvbnlAZ21haWwuY29tIiwiaWF0IjoxNzUzNzc4NDAwLCJleHAiOjE3NTM4NjQ4MDB9.Q5_YXEzW55w1FUaEsY8EpdtsYagcYtJcEFgXMdBObIo"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nom",
+									"value": "Dupont",
+									"type": "text"
+								},
+								{
+									"key": "prenom",
+									"value": "Jean",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "jean.dupont@mail.com",
+									"type": "text"
+								},
+								{
+									"key": "tel1",
+									"value": "0123456789",
+									"type": "text"
+								},
+								{
+									"key": "tel2",
+									"value": "0987654321",
+									"type": "text"
+								},
+								{
+									"key": "datedebut",
+									"value": "2025-07-25",
+									"type": "text"
+								},
+								{
+									"key": "datefin",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "idPlateforme",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "idrole",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/HERINANTENAINA/Pictures/Screenshots/Capture d'écran 2025-05-06 195214.png"
+								}
+							]
+						},
+						"url": "{{base_url}}/agent/createWithImage"
+					},
+					"response": []
+				},
+				{
+					"name": "get all Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25yaW5hYW50aG9ueUBnbWFpbC5jb20iLCJpYXQiOjE3NTIyMzYyNzksImV4cCI6MTc1MjMyMjY3OX0.PSYTNnczx3STqO4X1FPRKO9r0JZ8OrhGg8XkxzXZmFA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJyYW50b25pcmluYWFudGhvbnlAZ21haWwuY29tIiwiaWF0IjoxNzU0Mjk0NzkxLCJleHAiOjE3NTQzODExOTF9.pFr1ROiSOi2H90Ye5hUUqmjLDji_2Q8ukzCl4NpwTtU\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/agent/getAll"
+					},
+					"response": []
+				},
+				{
+					"name": "get One Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25yaW5hYW50aG9ueUBnbWFpbC5jb20iLCJpYXQiOjE3NTIyMzYyNzksImV4cCI6MTc1MjMyMjY3OX0.PSYTNnczx3STqO4X1FPRKO9r0JZ8OrhGg8XkxzXZmFA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25pcmluYWFudGhvbnlAZ21haWwuY29tIiwiaWF0IjoxNzUyNjUxNDU4LCJleHAiOjE3NTI3Mzc4NTh9.yFxq4oLD9APYlXRmkn6xY0jk29mFhq-NE6eiGLrshqg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/agent/getOne/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Copy",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25pcmluYWFudGhvbnlAZ21haWwuY29tIiwiaWF0IjoxNzUyNjUxNDU4LCJleHAiOjE3NTI3Mzc4NTh9.yFxq4oLD9APYlXRmkn6xY0jk29mFhq-NE6eiGLrshqg\",\r\n    \"id\": 1,\r\n    \"name\": \"Anthony Herinantenaina\",\r\n    \"email\": \"rantonirinaanthony@gmail.com\",\r\n    \"password\": \"$2b$10$mJ16ypofswAWXwQiUzq3qOjrMXLZBHVsf3H04m.tei1/lLd54A6oe\",\r\n    \"role\": \"ADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/agent/update/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{base_url}}/agent/delete/7"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "role",
+			"item": [
+				{
+					"name": "Cree Copy 2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Anthony Herinantenaina\",\r\n  \"email\": \"rantonirinaanthony@gmail.com\",\r\n  \"password\": \"031013dter.\",\r\n  \"role\": \"ADMIN\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/role/create"
+					},
+					"response": []
+				},
+				{
+					"name": "get all Copy 2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25yaW5hYW50aG9ueUBnbWFpbC5jb20iLCJpYXQiOjE3NTIyMzYyNzksImV4cCI6MTc1MjMyMjY3OX0.PSYTNnczx3STqO4X1FPRKO9r0JZ8OrhGg8XkxzXZmFA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25pcmluYWFudGhvbnlAZ21haWwuY29tIiwiaWF0IjoxNzUyNjUxNDU4LCJleHAiOjE3NTI3Mzc4NTh9.yFxq4oLD9APYlXRmkn6xY0jk29mFhq-NE6eiGLrshqg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/role/getAll"
+					},
+					"response": []
+				},
+				{
+					"name": "get One Copy 2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25yaW5hYW50aG9ueUBnbWFpbC5jb20iLCJpYXQiOjE3NTIyMzYyNzksImV4cCI6MTc1MjMyMjY3OX0.PSYTNnczx3STqO4X1FPRKO9r0JZ8OrhGg8XkxzXZmFA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25pcmluYWFudGhvbnlAZ21haWwuY29tIiwiaWF0IjoxNzUyNjUxNDU4LCJleHAiOjE3NTI3Mzc4NTh9.yFxq4oLD9APYlXRmkn6xY0jk29mFhq-NE6eiGLrshqg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/role/getOne/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Copy 2",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25pcmluYWFudGhvbnlAZ21haWwuY29tIiwiaWF0IjoxNzUyNjUxNDU4LCJleHAiOjE3NTI3Mzc4NTh9.yFxq4oLD9APYlXRmkn6xY0jk29mFhq-NE6eiGLrshqg\",\r\n    \"id\": 1,\r\n    \"name\": \"Anthony Herinantenaina\",\r\n    \"email\": \"rantonirinaanthony@gmail.com\",\r\n    \"password\": \"$2b$10$mJ16ypofswAWXwQiUzq3qOjrMXLZBHVsf3H04m.tei1/lLd54A6oe\",\r\n    \"role\": \"ADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/role/update/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Copy 2",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{base_url}}/role/delete/7"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Presence",
+			"item": [
+				{
+					"name": "Cree Copy 3",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Anthony Herinantenaina\",\r\n  \"email\": \"rantonirinaanthony@gmail.com\",\r\n  \"password\": \"031013dter.\",\r\n  \"role\": \"ADMIN\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/presence/create"
+					},
+					"response": []
+				},
+				{
+					"name": "Entree",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idAgent\": \"14\",\r\n    \"dateTime\": \"2025-08-04T11:40\",\r\n    \"type\": \"entree\",\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJyYW50b25pcmluYWFudGhvbnlAZ21haWwuY29tIiwiaWF0IjoxNzU0Mjk0NzkxLCJleHAiOjE3NTQzODExOTF9.pFr1ROiSOi2H90Ye5hUUqmjLDji_2Q8ukzCl4NpwTtU\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/presence/presenceAgent"
+					},
+					"response": []
+				},
+				{
+					"name": "sortie",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idAgent\": \"21\",\r\n    \"dateTime\": \"2025-08-04T19:00\",\r\n    \"type\": \"sortie\",\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJyYW50b25pcmluYWFudGhvbnlAZ21haWwuY29tIiwiaWF0IjoxNzU0Mjk0NzkxLCJleHAiOjE3NTQzODExOTF9.pFr1ROiSOi2H90Ye5hUUqmjLDji_2Q8ukzCl4NpwTtU\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/presence/presenceAgent"
+					},
+					"response": []
+				},
+				{
+					"name": "get all Copy 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `\r",
+									"<canvas id=\"myChart\" height=\"75\"></canvas>\r",
+									"\r",
+									"<script src=\"https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js\"></script> \r",
+									"\r",
+									"<script>\r",
+									"    var ctx = document.getElementById(\"myChart\");\r",
+									"\r",
+									"    var myChart = new Chart(ctx, {\r",
+									"        type: \"bar\",\r",
+									"        data: {\r",
+									"            labels: [],\r",
+									"            datasets: [{\r",
+									"                data: [],\r",
+									"                \r",
+									"                // Change these colours to customize the chart\r",
+									"                backgroundColor: [\"#003f5c\", \"#58508d\", \"#bc5090\", \"#ff6361\", \"#ffa600\"],\r",
+									"            }]\r",
+									"        },\r",
+									"        options: {\r",
+									"            legend: { display: false },\r",
+									"            title: {\r",
+									"                display: true,\r",
+									"                text: 'Presence Status Count'\r",
+									"            },\r",
+									"            scales: {\r",
+									"                xAxes: [{\r",
+									"                    display: true,\r",
+									"                    scaleLabel: {\r",
+									"                        display: true,\r",
+									"                        labelString: 'Presence ID'\r",
+									"                    }\r",
+									"                }],\r",
+									"                yAxes: [{\r",
+									"                    display: true,\r",
+									"                    scaleLabel: {\r",
+									"                        display: true,\r",
+									"                        labelString: 'Count'\r",
+									"                    }\r",
+									"                }]\r",
+									"            }\r",
+									"        }\r",
+									"\r",
+									"    });\r",
+									"\r",
+									"    // Access the data passed to pm.visualizer.set() from the JavaScript\r",
+									"    pm.getData(function (err, value) {\r",
+									"        myChart.data.datasets[0].data = value.response.data.map(item => item.detailPresences.length);\r",
+									"        myChart.data.labels = value.response.data.map(item => item.id);\r",
+									"        myChart.update();\r",
+									"    });\r",
+									"\r",
+									"</script>`;\r",
+									"\r",
+									"function constructVisualizerPayload() {\r",
+									"    var res = pm.response.json();\r",
+									"    \r",
+									"    return {response: res};\r",
+									"}\r",
+									"\r",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25yaW5hYW50aG9ueUBnbWFpbC5jb20iLCJpYXQiOjE3NTIyMzYyNzksImV4cCI6MTc1MjMyMjY3OX0.PSYTNnczx3STqO4X1FPRKO9r0JZ8OrhGg8XkxzXZmFA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJyYW50b25pcmluYWFudGhvbnlAZ21haWwuY29tIiwiaWF0IjoxNzU0Mjk0NzkxLCJleHAiOjE3NTQzODExOTF9.pFr1ROiSOi2H90Ye5hUUqmjLDji_2Q8ukzCl4NpwTtU\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/presence/getAll"
+					},
+					"response": []
+				},
+				{
+					"name": "liste agent Absent",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `\r",
+									"<canvas id=\"myChart\" height=\"75\"></canvas>\r",
+									"\r",
+									"<script src=\"https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js\"></script> \r",
+									"\r",
+									"<script>\r",
+									"    var ctx = document.getElementById(\"myChart\");\r",
+									"\r",
+									"    var myChart = new Chart(ctx, {\r",
+									"        type: \"bar\",\r",
+									"        data: {\r",
+									"            labels: [],\r",
+									"            datasets: [{\r",
+									"                data: [],\r",
+									"                \r",
+									"                // Change these colours to customize the chart\r",
+									"                backgroundColor: [\"#003f5c\", \"#58508d\", \"#bc5090\", \"#ff6361\", \"#ffa600\"],\r",
+									"            }]\r",
+									"        },\r",
+									"        options: {\r",
+									"            legend: { display: false },\r",
+									"            title: {\r",
+									"                display: true,\r",
+									"                text: 'Presence Status Count'\r",
+									"            },\r",
+									"            scales: {\r",
+									"                xAxes: [{\r",
+									"                    display: true,\r",
+									"                    scaleLabel: {\r",
+									"                        display: true,\r",
+									"                        labelString: 'Presence ID'\r",
+									"                    }\r",
+									"                }],\r",
+									"                yAxes: [{\r",
+									"                    display: true,\r",
+									"                    scaleLabel: {\r",
+									"                        display: true,\r",
+									"                        labelString: 'Count'\r",
+									"                    }\r",
+									"                }]\r",
+									"            }\r",
+									"        }\r",
+									"\r",
+									"    });\r",
+									"\r",
+									"    // Access the data passed to pm.visualizer.set() from the JavaScript\r",
+									"    pm.getData(function (err, value) {\r",
+									"        myChart.data.datasets[0].data = value.response.data.map(item => item.detailPresences.length);\r",
+									"        myChart.data.labels = value.response.data.map(item => item.id);\r",
+									"        myChart.update();\r",
+									"    });\r",
+									"\r",
+									"</script>`;\r",
+									"\r",
+									"function constructVisualizerPayload() {\r",
+									"    var res = pm.response.json();\r",
+									"    \r",
+									"    return {response: res};\r",
+									"}\r",
+									"\r",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25yaW5hYW50aG9ueUBnbWFpbC5jb20iLCJpYXQiOjE3NTIyMzYyNzksImV4cCI6MTc1MjMyMjY3OX0.PSYTNnczx3STqO4X1FPRKO9r0JZ8OrhGg8XkxzXZmFA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJyYW50b25pcmluYWFudGhvbnlAZ21haWwuY29tIiwiaWF0IjoxNzU0Mjk0NzkxLCJleHAiOjE3NTQzODExOTF9.pFr1ROiSOi2H90Ye5hUUqmjLDji_2Q8ukzCl4NpwTtU\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/presence/agentNonPresent?date=2025-08-04",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"presence",
+								"agentNonPresent"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2025-08-04"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "liste agent Absent Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `\r",
+									"<canvas id=\"myChart\" height=\"75\"></canvas>\r",
+									"\r",
+									"<script src=\"https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js\"></script> \r",
+									"\r",
+									"<script>\r",
+									"    var ctx = document.getElementById(\"myChart\");\r",
+									"\r",
+									"    var myChart = new Chart(ctx, {\r",
+									"        type: \"bar\",\r",
+									"        data: {\r",
+									"            labels: [],\r",
+									"            datasets: [{\r",
+									"                data: [],\r",
+									"                \r",
+									"                // Change these colours to customize the chart\r",
+									"                backgroundColor: [\"#003f5c\", \"#58508d\", \"#bc5090\", \"#ff6361\", \"#ffa600\"],\r",
+									"            }]\r",
+									"        },\r",
+									"        options: {\r",
+									"            legend: { display: false },\r",
+									"            title: {\r",
+									"                display: true,\r",
+									"                text: 'Presence Status Count'\r",
+									"            },\r",
+									"            scales: {\r",
+									"                xAxes: [{\r",
+									"                    display: true,\r",
+									"                    scaleLabel: {\r",
+									"                        display: true,\r",
+									"                        labelString: 'Presence ID'\r",
+									"                    }\r",
+									"                }],\r",
+									"                yAxes: [{\r",
+									"                    display: true,\r",
+									"                    scaleLabel: {\r",
+									"                        display: true,\r",
+									"                        labelString: 'Count'\r",
+									"                    }\r",
+									"                }]\r",
+									"            }\r",
+									"        }\r",
+									"\r",
+									"    });\r",
+									"\r",
+									"    // Access the data passed to pm.visualizer.set() from the JavaScript\r",
+									"    pm.getData(function (err, value) {\r",
+									"        myChart.data.datasets[0].data = value.response.data.map(item => item.detailPresences.length);\r",
+									"        myChart.data.labels = value.response.data.map(item => item.id);\r",
+									"        myChart.update();\r",
+									"    });\r",
+									"\r",
+									"</script>`;\r",
+									"\r",
+									"function constructVisualizerPayload() {\r",
+									"    var res = pm.response.json();\r",
+									"    \r",
+									"    return {response: res};\r",
+									"}\r",
+									"\r",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25yaW5hYW50aG9ueUBnbWFpbC5jb20iLCJpYXQiOjE3NTIyMzYyNzksImV4cCI6MTc1MjMyMjY3OX0.PSYTNnczx3STqO4X1FPRKO9r0JZ8OrhGg8XkxzXZmFA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJyYW50b25pcmluYWFudGhvbnlAZ21haWwuY29tIiwiaWF0IjoxNzU0Mjk0NzkxLCJleHAiOjE3NTQzODExOTF9.pFr1ROiSOi2H90Ye5hUUqmjLDji_2Q8ukzCl4NpwTtU\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/presence/agentPresentByDate?date=2025-08-04",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"presence",
+								"agentPresentByDate"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2025-08-04"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get One Copy 3",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25yaW5hYW50aG9ueUBnbWFpbC5jb20iLCJpYXQiOjE3NTIyMzYyNzksImV4cCI6MTc1MjMyMjY3OX0.PSYTNnczx3STqO4X1FPRKO9r0JZ8OrhGg8XkxzXZmFA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25pcmluYWFudGhvbnlAZ21haWwuY29tIiwiaWF0IjoxNzUyNjUxNDU4LCJleHAiOjE3NTI3Mzc4NTh9.yFxq4oLD9APYlXRmkn6xY0jk29mFhq-NE6eiGLrshqg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/presence/getOne/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Copy 3",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25pcmluYWFudGhvbnlAZ21haWwuY29tIiwiaWF0IjoxNzUyNjUxNDU4LCJleHAiOjE3NTI3Mzc4NTh9.yFxq4oLD9APYlXRmkn6xY0jk29mFhq-NE6eiGLrshqg\",\r\n    \"id\": 1,\r\n    \"name\": \"Anthony Herinantenaina\",\r\n    \"email\": \"rantonirinaanthony@gmail.com\",\r\n    \"password\": \"$2b$10$mJ16ypofswAWXwQiUzq3qOjrMXLZBHVsf3H04m.tei1/lLd54A6oe\",\r\n    \"role\": \"ADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/presence/update/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Copy 3",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{base_url}}/presence/delete/7"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Plateforme",
+			"item": [
+				{
+					"name": "Cree Copy 5",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Anthony Herinantenaina\",\r\n  \"email\": \"rantonirinaanthony@gmail.com\",\r\n  \"password\": \"031013dter.\",\r\n  \"role\": \"ADMIN\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/plateforme/create"
+					},
+					"response": []
+				},
+				{
+					"name": "get all Copy 5",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25yaW5hYW50aG9ueUBnbWFpbC5jb20iLCJpYXQiOjE3NTIyMzYyNzksImV4cCI6MTc1MjMyMjY3OX0.PSYTNnczx3STqO4X1FPRKO9r0JZ8OrhGg8XkxzXZmFA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25pcmluYWFudGhvbnlAZ21haWwuY29tIiwiaWF0IjoxNzUyNjUxNDU4LCJleHAiOjE3NTI3Mzc4NTh9.yFxq4oLD9APYlXRmkn6xY0jk29mFhq-NE6eiGLrshqg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/plateforme/getAll"
+					},
+					"response": []
+				},
+				{
+					"name": "get One Copy 5",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25yaW5hYW50aG9ueUBnbWFpbC5jb20iLCJpYXQiOjE3NTIyMzYyNzksImV4cCI6MTc1MjMyMjY3OX0.PSYTNnczx3STqO4X1FPRKO9r0JZ8OrhGg8XkxzXZmFA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25pcmluYWFudGhvbnlAZ21haWwuY29tIiwiaWF0IjoxNzUyNjUxNDU4LCJleHAiOjE3NTI3Mzc4NTh9.yFxq4oLD9APYlXRmkn6xY0jk29mFhq-NE6eiGLrshqg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/plateforme/getOne/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Copy 5",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25pcmluYWFudGhvbnlAZ21haWwuY29tIiwiaWF0IjoxNzUyNjUxNDU4LCJleHAiOjE3NTI3Mzc4NTh9.yFxq4oLD9APYlXRmkn6xY0jk29mFhq-NE6eiGLrshqg\",\r\n    \"id\": 1,\r\n    \"name\": \"Anthony Herinantenaina\",\r\n    \"email\": \"rantonirinaanthony@gmail.com\",\r\n    \"password\": \"$2b$10$mJ16ypofswAWXwQiUzq3qOjrMXLZBHVsf3H04m.tei1/lLd54A6oe\",\r\n    \"role\": \"ADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/plateforme/update/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Copy 5",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{base_url}}/plateforme/delete/7"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Detail Presence",
+			"item": [
+				{
+					"name": "Cree Copy 4",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Anthony Herinantenaina\",\r\n  \"email\": \"rantonirinaanthony@gmail.com\",\r\n  \"password\": \"031013dter.\",\r\n  \"role\": \"ADMIN\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/detailPresence/create"
+					},
+					"response": []
+				},
+				{
+					"name": "get all Copy 4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25yaW5hYW50aG9ueUBnbWFpbC5jb20iLCJpYXQiOjE3NTIyMzYyNzksImV4cCI6MTc1MjMyMjY3OX0.PSYTNnczx3STqO4X1FPRKO9r0JZ8OrhGg8XkxzXZmFA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJyYW50b25pcmluYWFudGhvbnlAZ21haWwuY29tIiwiaWF0IjoxNzU0Mjk0NzkxLCJleHAiOjE3NTQzODExOTF9.pFr1ROiSOi2H90Ye5hUUqmjLDji_2Q8ukzCl4NpwTtU\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/detailPresence/getAll"
+					},
+					"response": []
+				},
+				{
+					"name": "get One Copy 4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25yaW5hYW50aG9ueUBnbWFpbC5jb20iLCJpYXQiOjE3NTIyMzYyNzksImV4cCI6MTc1MjMyMjY3OX0.PSYTNnczx3STqO4X1FPRKO9r0JZ8OrhGg8XkxzXZmFA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25pcmluYWFudGhvbnlAZ21haWwuY29tIiwiaWF0IjoxNzUyNjUxNDU4LCJleHAiOjE3NTI3Mzc4NTh9.yFxq4oLD9APYlXRmkn6xY0jk29mFhq-NE6eiGLrshqg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/detailPresence/getOne/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Copy 4",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25pcmluYWFudGhvbnlAZ21haWwuY29tIiwiaWF0IjoxNzUyNjUxNDU4LCJleHAiOjE3NTI3Mzc4NTh9.yFxq4oLD9APYlXRmkn6xY0jk29mFhq-NE6eiGLrshqg\",\r\n    \"id\": 1,\r\n    \"name\": \"Anthony Herinantenaina\",\r\n    \"email\": \"rantonirinaanthony@gmail.com\",\r\n    \"password\": \"$2b$10$mJ16ypofswAWXwQiUzq3qOjrMXLZBHVsf3H04m.tei1/lLd54A6oe\",\r\n    \"role\": \"ADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/detailPresence/update/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Copy 4",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{base_url}}/detailPresence/delete/7"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TrashPresence",
+			"item": [
+				{
+					"name": "Cree Copy 6",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Anthony Herinantenaina\",\r\n  \"email\": \"rantonirinaanthony@gmail.com\",\r\n  \"password\": \"031013dter.\",\r\n  \"role\": \"ADMIN\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/trashPresence/create"
+					},
+					"response": []
+				},
+				{
+					"name": "get all Copy 6",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25yaW5hYW50aG9ueUBnbWFpbC5jb20iLCJpYXQiOjE3NTIyMzYyNzksImV4cCI6MTc1MjMyMjY3OX0.PSYTNnczx3STqO4X1FPRKO9r0JZ8OrhGg8XkxzXZmFA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25pcmluYWFudGhvbnlAZ21haWwuY29tIiwiaWF0IjoxNzUyNjUxNDU4LCJleHAiOjE3NTI3Mzc4NTh9.yFxq4oLD9APYlXRmkn6xY0jk29mFhq-NE6eiGLrshqg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/trashPresence/getAll"
+					},
+					"response": []
+				},
+				{
+					"name": "get One Copy 6",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25yaW5hYW50aG9ueUBnbWFpbC5jb20iLCJpYXQiOjE3NTIyMzYyNzksImV4cCI6MTc1MjMyMjY3OX0.PSYTNnczx3STqO4X1FPRKO9r0JZ8OrhGg8XkxzXZmFA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25pcmluYWFudGhvbnlAZ21haWwuY29tIiwiaWF0IjoxNzUyNjUxNDU4LCJleHAiOjE3NTI3Mzc4NTh9.yFxq4oLD9APYlXRmkn6xY0jk29mFhq-NE6eiGLrshqg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/trashPresence/getOne/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Copy 6",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJyYW50b25pcmluYWFudGhvbnlAZ21haWwuY29tIiwiaWF0IjoxNzUyNjUxNDU4LCJleHAiOjE3NTI3Mzc4NTh9.yFxq4oLD9APYlXRmkn6xY0jk29mFhq-NE6eiGLrshqg\",\r\n    \"id\": 1,\r\n    \"name\": \"Anthony Herinantenaina\",\r\n    \"email\": \"rantonirinaanthony@gmail.com\",\r\n    \"password\": \"$2b$10$mJ16ypofswAWXwQiUzq3qOjrMXLZBHVsf3H04m.tei1/lLd54A6oe\",\r\n    \"role\": \"ADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/trashPresence/update/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Copy 6",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{base_url}}/trashPresence/delete/7"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000/api",
+			"type": "string"
+		},
+		{
+			"key": "base_url_prod\n",
+			"value": "https://gestion-des-resources-et-production.vercel.app/api",
+			"type": "string"
+		}
+	]
+}

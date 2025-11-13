@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Affichage Google Sheet Publique</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f9f9f9;
+      color: #333;
+    }
+    input, button {
+      padding: 8px;
+      margin: 6px 0;
+      font-size: 14px;
+      width: 100%;
+      max-width: 600px;
+      box-sizing: border-box;
+    }
+    button {
+      background: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.2s ease;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .section {
+      margin-top: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background: #f0f0f0;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+    tr:nth-child(even) {
+      background: #f7f7f7;
+    }
+    tr:hover {
+      background: #e9f5ff;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Affichage d’une Google Sheet Publique</h2>
+  <div class="section">
+    <p>Collez l’URL de votre feuille Google Sheets (publique ou déjà publiée sur le web) :</p>
+    <input type="text" id="sheetUrl" value="https://docs.google.com/spreadsheets/d/1zaK7C5my7G8T_kuJ7ESTPRg098OxpCN8YfJtrUUeHoc/edit?usp=sharing" />
+    <button id="loadBtn">Charger et afficher</button>
+  </div>
+
+  <div id="tableContainer" class="section"></div>
+
+  <script>
+    document.getElementById('loadBtn').addEventListener('click', () => {
+      const url = document.getElementById('sheetUrl').value.trim();
+      const match = url.match(/\/d\/([a-zA-Z0-9-_]+)\/.*(?:gid=(\d+))?/);
+      if (!match) {
+        alert('URL invalide : assurez-vous d’avoir collé une URL de Google Sheets.');
+        return;
+      }
+      const [ , sheetId, gid = '0' ] = match;
+      const csvUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=${gid}`;
+
+      fetch(csvUrl)
+        .then(resp => {
+          if (!resp.ok) throw new Error('Erreur lors du fetch : ' + resp.status);
+          return resp.text();
+        })
+        .then(csvText => {
+          const rows = csvText
+            .trim()
+            .split('\n')
+            .map(line => line.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/));
+          renderTable(rows);
+        })
+        .catch(err => {
+          console.error(err);
+          alert('Impossible de charger la feuille. Vérifiez qu’elle est publique ou bien publiée sur le web.');
+        });
+    });
+
+    function renderTable(rows) {
+      const container = document.getElementById('tableContainer');
+      container.innerHTML = ''; // reset
+
+      const table = document.createElement('table');
+      const thead = document.createElement('thead');
+      const headerRow = document.createElement('tr');
+      rows[0].forEach(cell => {
+        const th = document.createElement('th');
+        th.textContent = cell.replace(/^"|"$/g, '');
+        headerRow.appendChild(th);
+      });
+      thead.appendChild(headerRow);
+      table.appendChild(thead);
+
+      const tbody = document.createElement('tbody');
+      rows.slice(1).forEach((row, i) => {
+        const tr = document.createElement('tr');
+        row.forEach(cell => {
+          const td = document.createElement('td');
+          td.textContent = cell.replace(/^"|"$/g, '');
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+      table.appendChild(tbody);
+
+      container.appendChild(table);
+    }
+  </script>
+
+</body>
+</html>
