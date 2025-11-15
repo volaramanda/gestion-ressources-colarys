@@ -248,23 +248,28 @@ export class PresenceService {
     return heure + ':00';
   }
 
-  private calculerHeuresTravaillees(heureEntree: string, heureSortie: string): number {
-    const [heuresEntree, minutesEntree] = heureEntree.split(':').map(Number);
-    const [heuresSortie, minutesSortie] = heureSortie.split(':').map(Number);
-
-    const entree = new Date();
-    entree.setHours(heuresEntree, minutesEntree, 0);
-
-    const sortie = new Date();
-    sortie.setHours(heuresSortie, minutesSortie, 0);
-
-    if (sortie < entree) {
-      sortie.setDate(sortie.getDate() + 1);
-    }
-
-    const diffMs = sortie.getTime() - entree.getTime();
-    return Number((diffMs / (1000 * 60 * 60)).toFixed(2));
-  }
+ // Dans PresenceService.ts - Remplacer la méthode calculerHeuresTravaillees
+private calculerHeuresTravaillees(heureEntree: string, heureSortie: string): number {
+  // Fixer à 8 heures pour tous les shifts
+  return 8.00;
+  
+  // Ancien code (à supprimer) :
+  // const [heuresEntree, minutesEntree] = heureEntree.split(':').map(Number);
+  // const [heuresSortie, minutesSortie] = heureSortie.split(':').map(Number);
+  // 
+  // const entree = new Date();
+  // entree.setHours(heuresEntree, minutesEntree, 0);
+  // 
+  // const sortie = new Date();
+  // sortie.setHours(heuresSortie, minutesSortie, 0);
+  // 
+  // if (sortie < entree) {
+  //   sortie.setDate(sortie.getDate() + 1);
+  // }
+  // 
+  // const diffMs = sortie.getTime() - entree.getTime();
+  // return Number((diffMs / (1000 * 60 * 60)).toFixed(2));
+}
 
 
   async getPresenceAujourdhuiByMatricule(matricule: string) {

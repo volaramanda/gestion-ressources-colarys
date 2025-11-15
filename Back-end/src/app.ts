@@ -21,13 +21,11 @@ import colarysRoutes from "./routes/colarysRoutes";
 
 dotenv.config();
 
-const isVercel = process.env.VERCEL === '1';
-
 // 🔥 VARIABLES D'ENVIRONNEMENT REQUISES
 const requiredEnvVars = [
   'JWT_SECRET',
   'POSTGRES_HOST',
-  'POSTGRES_USER', 
+  'POSTGRES_USER',
   'POSTGRES_PASSWORD',
   'SUPABASE_URL',
   'SUPABASE_KEY'
@@ -40,8 +38,6 @@ requiredEnvVars.forEach(envVar => {
 
 const PORT = process.env.PORT || 3000;
 const API_PREFIX = "/api";
-
-// ✅ CRÉATION DE L'APP EXPRESS EN PREMIER
 const app = express();
 
 // Configuration Multer pour l'upload d'images
@@ -168,45 +164,75 @@ app.use((err: any, _req: express.Request, res: express.Response, _next: express.
   });
 });
 
-// ✅ INITIALISATION ASYNCHRONE DE LA BASE DE DONNÉES
-const initializeDatabase = async () => {
+// Initialisation de l'application
+export const initializedApp = (async () => {
   try {
     await AppDataSource.initialize();
     console.log("📦 Connected to database");
     console.log("✅ All services initialized");
-    return true;
+
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running on http://localhost:${PORT}`);
+      console.log(`🔗 Health check: http://localhost:${PORT}${API_PREFIX}/health`);
+      console.log(`🔗 Auth endpoint: http://localhost:${PORT}${API_PREFIX}/auth/login`);
+      console.log(`🔗 Planning API: http://localhost:${PORT}${API_PREFIX}/plannings`);
+      console.log(`🔗 Agents Colarys: http://localhost:${PORT}${API_PREFIX}/agents-colarys`);
+      console.log(`🔗 Colarys Employees: http://localhost:${PORT}${API_PREFIX}/colarys/employees`);
+      
+      console.log(`🌐 Allowed origins: ${allowedOrigins.join(', ')}`);
+      console.log(`⚡ Environment: ${process.env.NODE_ENV || 'development'}`);
+    });
+
+    return app;
   } catch (error) {
     console.error("❌ Database connection failed:", error);
-    return false;
-  }
-};
-
-// ✅ FONCTION POUR DÉMARRER LE SERVEUR (LOCAL UNIQUEMENT)
-const startServer = async () => {
-  const dbConnected = await initializeDatabase();
-  
-  if (!dbConnected) {
-    console.error("❌ Cannot start server without database connection");
     process.exit(1);
   }
+})();
 
-  app.listen(PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
-    console.log(`🔗 Health check: http://localhost:${PORT}${API_PREFIX}/health`);
-    console.log(`🔗 Auth endpoint: http://localhost:${PORT}${API_PREFIX}/auth/login`);
-    console.log(`🔗 Planning API: http://localhost:${PORT}${API_PREFIX}/plannings`);
-    console.log(`🔗 Agents Colarys: http://localhost:${PORT}${API_PREFIX}/agents-colarys`);
-    console.log(`🔗 Colarys Employees: http://localhost:${PORT}${API_PREFIX}/colarys/employees`);
-    
-    console.log(`🌐 Allowed origins: ${allowedOrigins.join(', ')}`);
-    console.log(`⚡ Environment: ${process.env.NODE_ENV || 'development'}`);
+
+// ... gardez tout votre code jusqu'à la ligne suivante :
+
+// Gestionnaire d'erreurs global
+app.use((err: any, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
+  console.error("❌ Error:", err);
+  res.status(500).json({ 
+    success: false,
+    error: "Internal server error",
+    message: process.env.NODE_ENV === 'development' ? err.message : 'Something went wrong'
   });
-};
+});
 
-// ✅ EXPORT POUR VERCEL - SANS DÉMARRER LE SERVEUR
+// ⬇️⬇️⬇️ AJOUTEZ CE CODE À LA PLACE ⬇️⬇️⬇️
+
+// Export pour Vercel
 export default app;
 
-// ✅ DÉMARRAGE LOCAL UNIQUEMENT
-if (process.env.NODE_ENV !== 'production' && !isVercel) {
-  startServer().catch(console.error);
+// Démarrage du serveur seulement en développement local
+if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
+  const startServer = async () => {
+    try {
+      await AppDataSource.initialize();
+      console.log("📦 Connected to database");
+      console.log("✅ All services initialized");
+
+      const PORT = process.env.PORT || 3000;
+      app.listen(PORT, () => {
+        console.log(`🚀 Server running on http://localhost:${PORT}`);
+        console.log(`🔗 Health check: http://localhost:${PORT}${API_PREFIX}/health`);
+        console.log(`🔗 Auth endpoint: http://localhost:${PORT}${API_PREFIX}/auth/login`);
+        console.log(`🔗 Planning API: http://localhost:${PORT}${API_PREFIX}/plannings`);
+        console.log(`🔗 Agents Colarys: http://localhost:${PORT}${API_PREFIX}/agents-colarys`);
+        console.log(`🔗 Colarys Employees: http://localhost:${PORT}${API_PREFIX}/colarys/employees`);
+        console.log(`🌐 Allowed origins: ${allowedOrigins.join(', ')}`);
+        console.log(`⚡ Environment: ${process.env.NODE_ENV || 'development'}`);
+      });
+    } catch (error) {
+      console.error("❌ Database connection failed:", error);
+      process.exit(1);
+    }
+  };
+
+  startServer();
 }
+

@@ -3,8 +3,7 @@ import { Request, Response } from "express";
 import { BaseService } from "../services/BaseService";
 import { HttpStatus } from "../utils/httpStatus";
 
-// Supprimez la contrainte ObjectLiteral si elle cause des problèmes
-export class BaseController<T extends object> {  // Utilisez 'object' au lieu de 'ObjectLiteral'
+export class BaseController<T> {
   protected service: BaseService<T>;
   protected withRelations: string[] = [];
 
@@ -13,7 +12,7 @@ export class BaseController<T extends object> {  // Utilisez 'object' au lieu de
     this.withRelations = relations;
   }
 
-  getAll = async (_req: Request, res: Response) => {
+  getAll = async (req: Request, res: Response) => {
     try {
       const items = await this.service.findAll(this.withRelations);
       const status = HttpStatus.OK;

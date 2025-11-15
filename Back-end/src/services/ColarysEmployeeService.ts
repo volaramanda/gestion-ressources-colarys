@@ -542,7 +542,7 @@ async updatePresence(matricule: string, year: number, month: number, day: number
           const montantTravaille = Math.max(0, salBase - montantAbsenceDeduit); // Salaire base fixe moins les absences
 
           // Les majorations et indemnités restent calculées normalement
-          const majNuit = h_nuit * tauxH * 0.30;
+         const majNuit = (h_nuit / 8) * 8000;
           const majFerie = h_ferie * tauxH * 1.00;
           const indemConge = h_conge * tauxH;
           const indemFormation = joursFormation * 10000;

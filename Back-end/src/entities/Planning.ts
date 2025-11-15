@@ -63,7 +63,7 @@ export interface PlanningStats {
 export const SHIFT_HOURS_MAP: { [key: string]: number } = {
   OFF: 0,
   JOUR: 8,
-  NUIT: 10,
+  NUIT: 8,
   MAT5: 8,
   MAT9: 8,
   CONGE: 0,

@@ -1,17 +1,13 @@
 {
   "name": "theme-gestion-des-resources-et-production-de-colarys-concept",
   "version": "1.0.0",
-  "main": "api/index.ts",
+  "main": "dist/api/index.js",
   "scripts": {
-     "build": "tsc --project tsconfig.vercel.json",
-   "vercel-build": "npm run build || echo 'Build completed with warnings'",
+    "build": "tsc",
     "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
     "start": "node dist/app.js",
     "dev:with-python": "concurrently \"npm run dev:python\" \"npm run dev\"",
     "dev:python": "cd ../python-app && python start_api.py"
-  },
-    "engines": {
-    "node": ">=18"
   },
   "keywords": [],
   "author": "",
